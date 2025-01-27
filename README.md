@@ -7,6 +7,15 @@ Cada registro contém: URL, username e password.
 ## Como o Google Chrome armazena as senhas?
 O Google Chrome armazena as senhas em um banco de dados SQLite no caminho: `C:\Users\[nome do usuário]\AppData\Local\Google\Chrome\User Data\Default\Login Data` na tabela `logins`.
 
+Abaixo as tabelas do arquivo Login Data
+![Imagem das Tabelas do banco de dados Login Data](https://i.postimg.cc/cHDXrYXP/tabelas-Login-Data.jpg)
+
+Abaixo a tabela logins do arquivo Login Data com as colunas que nos interessam já filtradas `action_url, username_value, password_value`:
+![Imagem da tabela logins](https://i.postimg.cc/TPf90QsZ/tabela-logins-filtrada.jpg)
+
+Observe que o campo `password_value` é do tipo BLOB (*binary large object*). Nesse campo as senhas estão armazenadas como dados binários (byte a byte) criptografadas.
+
+O Google Chrome utiliza a cifra **AES 256** com modo **GCM** para criptografar essas senhas. A chave fica armazenada no arquivo Local State, que é um arquivo texto que contém dados organizados em JSON (*javascript object notation*). A chave está em os_crypt.encrypted_key.
 
 ## Explicação do código
 
