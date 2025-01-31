@@ -36,7 +36,7 @@ for index, data in enumerate(db_cur.fetchall()):
 
     # Dados criptografados que você quer descriptografar
     password_value = password_value[3:] #descarta v10 que indica parâmetros de criptografia do Chrome
-    iv = password_value[:12] #primeiros 16 bytes são o IV
+    iv = password_value[:12] #primeiros 12 bytes são o IV
     encrypted_data = password_value[12:] #demais bytes são o CT
 
     # Descriptografar
